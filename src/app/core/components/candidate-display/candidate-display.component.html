@@ -1,3 +1,47 @@
 <app-navbar></app-navbar>
-<p>candidate display works!</p>
+<h1 class = "text-center" >Canidates List</h1>
+<!-- Search Bar --> 
+<div class="container">
+<form class="row g-3">
+  <div class="col-auto">
+    <select class="form-select form-select-sm" aria-label="Default select example">
+      <option selected>Search Options...</option>
+      <option value="1">Id</option>
+      <option value="2">College</option>
+      <option value="3">Name</option>
+    </select>
+  </div>
+    <div class="col-auto">
+      <input type="text" class="form-control" id="inputPassword2" placeholder="Search">
+    </div>
+    <div class="col-auto">
+      <button type="submit" class="btn btn-primary mb-3">Search</button>
+    </div>
+  </form>
+</div>
+
+<!-- Candidate cards -->
+<div class="container">
+
+      <table class="table table-striped">
+        <thead>   
+          <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Name</th>
+            <th scope="col">Email Id</th>
+            <th scope="col">College</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor = "let candidate of candidates">
+            <th scope="row">{{candidate.candidateId}}</th>
+            <td>{{candidate.firstName}} {{candidate.lastName}}</td>
+            <td>{{candidate.email}}</td>
+            <td>{{candidate.college}}</td>
+            <td><button type="submit" class="btn btn-primary">Onboard</button></td>
+          </tr>
+        </tbody>
+      </table>
+</div>
 <app-footer></app-footer>

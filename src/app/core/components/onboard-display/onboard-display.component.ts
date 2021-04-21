@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Onboard } from '../../model/onboard';
+import { OnboardService } from '../../services/onboard.service';
 
 @Component({
   selector: 'app-onboard-display',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OnboardDisplayComponent implements OnInit {
 
-  constructor() { }
+  onboards:Onboard[];
+  constructor(private onboardService: OnboardService) { }
 
   ngOnInit(): void {
+    this.getAllOnboards();
   }
-
+  getAllOnboards(){
+    this.onboardService.getFullOnboardsList().subscribe((data) =>{
+      this.onboards = data;  
+    });
+  }
 }

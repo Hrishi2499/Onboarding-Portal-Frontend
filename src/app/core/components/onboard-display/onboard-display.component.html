@@ -1,3 +1,61 @@
 <app-navbar></app-navbar>
-<p>onboard-display works!</p>
+<h1 class = "text-center" >Onboard List</h1>
+<!-- Search Bar --> 
+<div class="container">
+<form class="row g-3">
+    <select class="form-select form-select-sm col-auto" aria-label="Default select example">
+        <option selected>Open this select menu</option>
+        <option value="1">One</option>
+        <option value="2">Two</option>
+        <option value="3">Three</option>
+    </select>
+    <div class="col-auto">
+      <input type="text" class="form-control" placeholder="Search">
+    </div>
+    <div class="col-auto">
+      <button type="submit" class="btn btn-primary mb-3">Search</button>
+    </div>
+  </form>
+</div>
+
+<!-- Candidate cards -->
+<div class="container">
+
+      <table class="table table-striped">
+        <tbody>
+          <tr *ngFor = "let onboard of onboards">
+                    <td colspan="1">
+                    Onboard ID: {{onboard.onboardId}} 
+                    <br>
+                    Candidate ID: {{onboard.candidate.candidateId}}
+                    <br>
+                    Background Status: {{onboard.bgStatus}} <br>
+                    <br>
+                    Manager Name: {{onboard.hiringManager.name}}
+                    </td>
+
+                    <td colspan="2">
+                        Date of Creation: {{onboard.startDate}}
+                        <br>
+                        Name: {{onboard.candidate.firstName}} {{onboard.candidate.lastName}}
+                        <br>
+                        Expected Onboarding Date: {{onboard.eta}}
+                        <br>
+                        <br>
+                        Manager Email: {{onboard.hiringManager.email}}
+                    </td>
+                <td colspan="1">
+                    <br>
+                    <br>
+                    Onboard Status: {{onboard.onboardStatus}}
+                </td>
+                    <td>
+                        <button type="submit" class="btn btn-primary">Edit</button>
+                        <br><br>
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </td>
+          </tr>
+        </tbody>
+      </table>
+</div>
 <app-footer></app-footer>

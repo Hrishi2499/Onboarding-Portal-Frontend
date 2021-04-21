@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import {HttpClientModule} from '@angular/common/http'
 
 import { AuthModule } from './auth/auth.module';
 import { HomeComponent } from './home/home.component';
@@ -31,7 +32,8 @@ import { AuthorizationService } from './auth/services/authorization.service';
     AuthModule.forRoot(),
     SocialLoginModule,
     SharedModule,
-    CoreModule
+    CoreModule,
+    HttpClientModule
   ],
   providers: [
     {
