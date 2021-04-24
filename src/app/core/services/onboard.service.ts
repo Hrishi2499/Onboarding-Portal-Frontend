@@ -13,5 +13,21 @@ export class OnboardService {
 
   getFullOnboardsList(): Observable<Onboard[]>{
     return this.httpClient.get<Onboard[]>(`${this.baseUrl}`);
-}
+  }
+
+  getOnboardByOnboardId(onboardId:number):Observable<Onboard>{
+    return this.httpClient.get<Onboard>(`${this.baseUrl}`+`/onboardId=${onboardId}`);
+  }
+
+  createOnboard(onboard:Onboard): Observable<Onboard[]>{
+    return this.httpClient.put<Onboard[]>(`${this.baseUrl}`,onboard);
+  }
+
+  updateOnboard(onboard:Onboard): Observable<Onboard[]>{
+    return this.httpClient.post<Onboard[]>(`${this.baseUrl}`,onboard);
+  }
+
+  deleteOnboard(onboardId:number):any{
+    return this.httpClient.delete(`${this.baseUrl}`+`/onboardId=${onboardId}`);
+  }
 }

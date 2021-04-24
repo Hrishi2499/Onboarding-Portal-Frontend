@@ -9,6 +9,7 @@ export class Onboard {
 	bgStatus: string;
 	startDate: string;
 	eta: string;
+	location: string;
 	
 	candidate: Candidate;
 	hiringManager: HiringManager;

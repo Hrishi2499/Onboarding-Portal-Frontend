@@ -2,21 +2,30 @@
 <h1 class = "text-center" >Onboard List</h1>
 <!-- Search Bar --> 
 <div class="container">
-<form class="row g-3">
-    <select class="form-select form-select-sm col-auto" aria-label="Default select example">
-        <option selected>Open this select menu</option>
-        <option value="1">One</option>
-        <option value="2">Two</option>
-        <option value="3">Three</option>
-    </select>
-    <div class="col-auto">
-      <input type="text" class="form-control" placeholder="Search">
+  <form>
+    <div class="form-row" style= "align-self: center;">
+      <div class="form-group col-md-3">
+        <select id="parameter" name = "parameter" [(ngModel)] = "parameter" class="form-control">
+          <option value="onboardId">Onboard Id</option>
+          <option value="candidateId">Candidate Id</option>
+          <option value = "firstName">First Name</option>
+          <option value = "lastName">Last Name</option>
+          <option value = "college">College</option>
+          <option value = "location">Location</option>
+        </select>
+      </div>
+      <div class="form-group col-md-7">
+        <input type="text" name = "value" [(ngModel)] = "value" class="form-control" id="value" placeholder="Search by parameters">
+      </div>
+      <div class="form-group col-md-1">
+        <button type="submit" (click) = "searchByParameter()" class="btn btn-primary">Search</button>
+      </div>
+      <div class="form-group col-md-1">
+        <button type="submit" (click) = "resetSearch()" class="btn btn-primary">Reset</button>
+      </div>
     </div>
-    <div class="col-auto">
-      <button type="submit" class="btn btn-primary mb-3">Search</button>
-    </div>
-  </form>
-</div>
+    </form>
+  </div>
 
 <!-- Candidate cards -->
 <div class="container">
@@ -29,9 +38,9 @@
                     <br>
                     Candidate ID: {{onboard.candidate.candidateId}}
                     <br>
-                    Background Status: {{onboard.bgStatus}} <br>
+                    Manager ID: {{onboard.hiringManager.hId}}
                     <br>
-                    Manager Name: {{onboard.hiringManager.name}}
+                    
                     </td>
 
                     <td colspan="2">
@@ -39,20 +48,23 @@
                         <br>
                         Name: {{onboard.candidate.firstName}} {{onboard.candidate.lastName}}
                         <br>
-                        Expected Onboarding Date: {{onboard.eta}}
+                        Manager Name: {{onboard.hiringManager.name}}
                         <br>
-                        <br>
-                        Manager Email: {{onboard.hiringManager.email}}
+                        Manager Email: {{onboard.hiringManager.hmEmail}}
                     </td>
                 <td colspan="1">
-                    <br>
+                    Background Status: {{onboard.bgStatus}}
                     <br>
                     Onboard Status: {{onboard.onboardStatus}}
+                    <br>
+                    Expected Onboarding Date: {{onboard.eta}}
+                    <br>
+                    Onboard Location: {{onboard.location}}
                 </td>
                     <td>
-                        <button type="submit" class="btn btn-primary">Edit</button>
+                        <button (click)="updateOnboard(onboard.onboardId)" class="btn btn-primary">Edit</button>
                         <br><br>
-                        <button type="submit" class="btn btn-danger">Delete</button>
+                        <button (click)="deleteOnboard(onboard.onboardId)" class="btn btn-danger">Delete</button>
                     </td>
           </tr>
         </tbody>

@@ -1,29 +1,29 @@
 <app-navbar></app-navbar>
 <div class="container">
 <div class="col-md-6 offset-md-3">
-    <h3> Create Onboard </h3>
+    <h3> Update Onboard </h3>
     <form (ngSubmit) = "onSubmit()" ngNativeValidate>
     
         <div class="form-group">
             <label> First Name</label>
             <input type="text" class ="form-control" id = "firstName"
-                [(ngModel)] = "candidate.firstName" name = "firstName" readonly>
+                [(ngModel)] = "onboard.candidate.firstName" name = "firstName" readonly>
         </div>
         <div class="form-group">
             <label> Last Name</label>
             <input type="text" class ="form-control" id = "lastName"
-                [(ngModel)] = "candidate.lastName" name = "lastName" readonly>
+                [(ngModel)] = "onboard.candidate.lastName" name = "lastName" readonly>
         </div>
     
         <div class="form-group">
             <label> Email Id</label>
             <input type="text" class ="form-control" id = "emailId"
-                [(ngModel)] = "candidate.email" name = "email" readonly>
+                [(ngModel)] = "onboard.candidate.email" name = "email" readonly>
         </div>
 
         <div class="form-group">
             <label for="hmId">Hiring Manager</label><br>
-            <select name="location" id="location" [(ngModel)]="onboard.hmId"  required>
+            <select name="hiringManager" id="hiringManager" [(ngModel)]="onboard.hmId"  required>
                 <option *ngFor="let hm of hiringManager" [ngValue]=hm.hId>{{hm.name}}</option> 
             </select><br>
         </div>
@@ -44,7 +44,7 @@
         </div>
         <div class="form-group">
             <label for="singleSelect">Onboard Status</label><br>
-            <select name="location" id="location" [(ngModel)]="onboard.onboardStatus" required>
+            <select name="onboardStatus" id="onboardStatus" [(ngModel)]="onboard.onboardStatus" required>
                 <option value="Started">Started</option> 
                 <option value="In progress">In progress</option>
                 <option value="Onboarded">Onboarded</option> 
@@ -52,7 +52,7 @@
         </div>
         <div class="form-group">
             <label for="singleSelect">Background Status</label><br>
-            <select name="location" id="location" [(ngModel)]="onboard.bgStatus" required>
+            <select name="bgStatus" id="bgStatus" [(ngModel)]="onboard.bgStatus" required>
                 <option value="Started">Started</option> 
                 <option value="In progress">In progress</option>
                 <option value="Completed">Completed</option>

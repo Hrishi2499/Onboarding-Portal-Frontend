@@ -14,4 +14,8 @@ export class CandidateService {
   getFullCandidateList(): Observable<Candidate[]>{
       return this.httpClient.get<Candidate[]>(`${this.baseUrl}`);
   }
+
+  getCandidateById(candidateId: number): Observable<Candidate>{
+    return this.httpClient.get<Candidate>(`${this.baseUrl}/candidateId=${candidateId}`);
+  }
 }

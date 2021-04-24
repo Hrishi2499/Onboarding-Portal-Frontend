@@ -2,25 +2,30 @@
 <h1 class = "text-center" >Canidates List</h1>
 <!-- Search Bar --> 
 <div class="container">
-<form class="row g-3">
-  <div class="col-auto">
-    <select class="form-select form-select-sm" aria-label="Default select example">
-      <option selected>Search Options...</option>
-      <option value="1">Id</option>
-      <option value="2">College</option>
-      <option value="3">Name</option>
-    </select>
+<form>
+  <div class="form-row" style= "align-self: center;">
+    <div class="form-group col-md-3">
+      <select id="parameter" name = "parameter" [(ngModel)] = "parameter" class="form-control">
+        <option value="candidateId">Id</option>
+        <option value = "firstName">First Name</option>
+        <option value = "lastName">Last Name</option>
+        <option value = "college">College</option>
+      </select>
+    </div>
+    <div class="form-group col-md-7">
+      <input type="text" name = "value" [(ngModel)] = "value" class="form-control" id="value" placeholder="Search by parameters">
+    </div>
+    <div class="form-group col-md-1">
+      <button type="submit" (click) = "searchByParameter()" class="btn btn-primary">Search</button>
+    </div>
+    <div class="form-group col-md-1">
+      <button type="submit" (click) = "resetSearch()" class="btn btn-primary">Reset</button>
+    </div>
   </div>
-    <div class="col-auto">
-      <input type="text" class="form-control" id="inputPassword2" placeholder="Search">
-    </div>
-    <div class="col-auto">
-      <button type="submit" class="btn btn-primary mb-3">Search</button>
-    </div>
   </form>
 </div>
 
-<!-- Candidate cards -->
+<!-- Candidates -->
 <div class="container">
 
       <table class="table table-striped">
@@ -39,7 +44,7 @@
             <td>{{candidate.firstName}} {{candidate.lastName}}</td>
             <td>{{candidate.email}}</td>
             <td>{{candidate.college}}</td>
-            <td><button type="submit" class="btn btn-primary">Onboard</button></td>
+            <td><button (click) = "createOnboard(candidate.candidateId)" class="btn btn-primary">Onboard</button></td>
           </tr>
         </tbody>
       </table>
