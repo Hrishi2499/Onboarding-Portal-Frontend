@@ -4,4 +4,5 @@ export class Candidate {
     lastName: string;
     email: string;
     college: string;
+    skills: string[];
 }

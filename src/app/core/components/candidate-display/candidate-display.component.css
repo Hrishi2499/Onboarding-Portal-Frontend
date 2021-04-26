@@ -1,3 +1,7 @@
 .form-row>.col, .form-row>[class*=col-]{
     padding-left: 1% !important;
 }
+
+.table td, .table th{
+    vertical-align: middle;
+}

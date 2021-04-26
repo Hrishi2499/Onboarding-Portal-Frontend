@@ -10,6 +10,7 @@
         <option value = "firstName">First Name</option>
         <option value = "lastName">Last Name</option>
         <option value = "college">College</option>
+        <option value = "skills">Skill</option>
       </select>
     </div>
     <div class="form-group col-md-7">
@@ -35,6 +36,7 @@
             <th scope="col">Name</th>
             <th scope="col">Email Id</th>
             <th scope="col">College</th>
+            <th scope="col">Skills</th>
             <th scope="col">Action</th>
           </tr>
         </thead>
@@ -44,6 +46,7 @@
             <td>{{candidate.firstName}} {{candidate.lastName}}</td>
             <td>{{candidate.email}}</td>
             <td>{{candidate.college}}</td>
+            <td><span *ngFor="let skills of candidate.skills">{{skills}}<br></span></td>
             <td><button (click) = "createOnboard(candidate.candidateId)" class="btn btn-primary">Onboard</button></td>
           </tr>
         </tbody>

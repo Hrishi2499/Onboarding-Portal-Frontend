@@ -42,9 +42,14 @@ export class OnboardDisplayComponent implements OnInit {
                               return onboard.onboardId == Number(this.value);
                           });
                           break;
-      case "onboardId": this.onboards = this.temp;
+      case "candidateId": this.onboards = this.temp;
                           this.onboards = this.onboards.filter((onboard) =>{
                               return onboard.candidateId == Number(this.value);
+                          });
+                          break;
+      case "onboardStatus": this.onboards = this.temp;
+                            this.onboards = this.onboards.filter((onboard) =>{
+                              return onboard.onboardStatus.toLowerCase().includes((this.value.toLowerCase()));
                           });
                           break;
       case "firstName": this.onboards = this.temp;

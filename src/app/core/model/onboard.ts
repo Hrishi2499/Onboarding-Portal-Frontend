@@ -6,10 +6,12 @@ export class Onboard {
 	candidateId:number;
 	hmId: number;
 	onboardStatus: string;
-	bgStatus: string;
 	startDate: string;
 	eta: string;
 	location: string;
+	bgStatus: boolean;
+	graduation: boolean;
+	training: boolean;
 	
 	candidate: Candidate;
 	hiringManager: HiringManager;

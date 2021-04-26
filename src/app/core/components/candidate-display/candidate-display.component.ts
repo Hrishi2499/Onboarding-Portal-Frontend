@@ -42,16 +42,22 @@ export class CandidateDisplayComponent implements OnInit {
                         this.candidates = this.candidates.filter((candidate) =>{
                             return candidate.firstName.toLowerCase().includes((this.value.toLowerCase()));
                         });
-      break;
+                        break;
       case "lastName": this.candidates = this.temp;
                         this.candidates = this.candidates.filter((candidate) =>{
                             return candidate.lastName.toLowerCase().includes((this.value.toLowerCase()));
                         });
-      break;
+                        break;
       case "college": this.candidates = this.temp;
                       this.candidates = this.candidates.filter((candidate) =>{
                           return candidate.college.toLowerCase().includes((this.value.toLowerCase()));
                       });
+                      break;
+      case "skills": this.candidates = this.temp;
+                      this.candidates = this.candidates.filter((candidate) =>{
+                          return candidate.skills.includes(this.value);
+                      });
+      
     }
   }
 

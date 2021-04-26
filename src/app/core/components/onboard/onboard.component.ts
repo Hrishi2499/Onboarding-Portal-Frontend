@@ -18,6 +18,7 @@ export class OnboardComponent implements OnInit {
   candidate: Candidate;
   onboard: Onboard = new Onboard();
   hiringManager: HiringManager[];
+  isDataAvailable = false;
 
   constructor(private candidateService: CandidateService, private route: ActivatedRoute,
               private onboardService: OnboardService, private router: Router,
@@ -32,6 +33,7 @@ export class OnboardComponent implements OnInit {
 
     this.candidateService.getCandidateById(this.candidateId).subscribe((data) =>{
       this.candidate = data;
+      this.isDataAvailable = true;
     }, error =>{
       window.alert("Onboarding process for this candidate already started");
       this.router.navigate(['/candidates']);
@@ -50,6 +52,15 @@ export class OnboardComponent implements OnInit {
 
   onSubmit(){
     this.onboard.candidateId = this.candidate.candidateId;
+    if(this.onboard.bgStatus != true)
+      this.onboard.bgStatus = false;
+    
+    if(this.onboard.graduation != true)
+      this.onboard.graduation = false;
+    
+    if(this.onboard.training != true)
+      this.onboard.training = false;
+    console.log(this.onboard);
     this.createOnboard(this.onboard);
   }
 

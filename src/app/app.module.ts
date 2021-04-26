@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {HttpClientModule} from '@angular/common/http'
+import { RouterModule } from '@angular/router'
 
 import { AuthModule } from './auth/auth.module';
 import { HomeComponent } from './home/home.component';
@@ -33,7 +34,8 @@ import { AuthorizationService } from './auth/services/authorization.service';
     SocialLoginModule,
     SharedModule,
     CoreModule,
-    HttpClientModule
+    HttpClientModule,
+    RouterModule
   ],
   providers: [
     {

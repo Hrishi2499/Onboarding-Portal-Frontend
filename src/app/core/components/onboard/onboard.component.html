@@ -42,22 +42,22 @@
             <input type="date" class ="form-control" id = "date"
                 [(ngModel)] = "onboard.eta" name = "eta" required>
         </div>
-        <div class="form-group">
-            <label for="singleSelect">Onboard Status</label><br>
-            <select name="location" id="location" [(ngModel)]="onboard.onboardStatus" required>
-                <option value="Started">Started</option> 
-                <option value="In progress">In progress</option>
-                <option value="Onboarded">Onboarded</option> 
-            </select><br>
+        <div class="form-check">
+            <input type="checkbox" class ="form-check-input" id = "bg_status"
+            [(ngModel)] = "onboard.bgStatus" name = "bg_status">
+            <label for="bg_status">Background Check Done?</label>
         </div>
-        <div class="form-group">
-            <label for="singleSelect">Background Status</label><br>
-            <select name="location" id="location" [(ngModel)]="onboard.bgStatus" required>
-                <option value="Started">Started</option> 
-                <option value="In progress">In progress</option>
-                <option value="Completed">Completed</option>
-            </select><br>
+        <div class="form-check">
+            <input type="checkbox" class ="form-check-input" id = "graduation"
+            [(ngModel)] = "onboard.graduation" name = "graduation">
+            <label for="graduation">Graduation Done?</label>
         </div>
+        <div class="form-check">
+            <input type="checkbox" class ="form-check-input" id = "training"
+            [(ngModel)] = "onboard.training" name = "training">
+            <label for="training">Training Done?</label>
+        </div>
+
         <div class="form-group">
             <button class = "btn btn-success" type ="submit">Submit</button>
         </div>
