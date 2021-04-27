@@ -8,10 +8,13 @@
         <select id="parameter" name = "parameter" [(ngModel)] = "parameter" class="form-control">
           <option value="onboardId">Onboard Id</option>
           <option value="candidateId">Candidate Id</option>
+          <option value="hmId">Hiring Manager Id</option>
+          <option value="managerName">Hiring Manager Name</option>
           <option value = "firstName">First Name</option>
           <option value = "lastName">Last Name</option>
           <option value = "college">College</option>
           <option value = "location">Location</option>
+          <option value="skill">Skill</option>
           <option value="onboardStatus">Onboard Status</option>
         </select>
       </div>
@@ -52,7 +55,7 @@
                 </td>
 
                 <td colspan="1">
-                    Onboard Status: {{onboard.onboardStatus}}
+                    Skill: {{onboard.candidate.skill}}
                     <br>
                     Expected Onboarding Date: {{onboard.eta}}
                     <br>
@@ -65,6 +68,7 @@
                   <br>
                   Training: <span *ngIf="onboard.training; else Pending">Done</span>
                   <br>
+                  Onboard Status: {{onboard.onboardStatus}}
                   <ng-template #Pending>Pending</ng-template>
               </td>
                     <td>

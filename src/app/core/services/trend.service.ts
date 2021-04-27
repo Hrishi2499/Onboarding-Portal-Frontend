@@ -18,4 +18,8 @@ export class TrendService {
   getTrendByManager(): Observable<TrendData>{
     return this.httpClient.get<TrendData>(`${this.baseURL}` + `/manager`);
   }
+
+  getTrendBySkill(): Observable<TrendData>{
+    return this.httpClient.get<TrendData>(`${this.baseURL}` + `/skill`);
+  }
 }

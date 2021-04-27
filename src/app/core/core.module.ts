@@ -11,6 +11,7 @@ import { OnboardDisplayComponent } from './components/onboard-display/onboard-di
 import { OnboardComponent } from './components/onboard/onboard.component';
 import { UpdateOnboardComponent } from './components/update-onboard/update-onboard.component';
 import { TrendsComponent } from './components/trends/trends.component';
+import { LogDisplayComponent } from './components/log-display/log-display.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { TrendsComponent } from './components/trends/trends.component';
        OnboardComponent,
        UpdateOnboardComponent,
        TrendsComponent,
+       LogDisplayComponent,
   ],
   imports: [
     CommonModule,

@@ -24,7 +24,7 @@
         <div class="form-group">
             <label for="hmId">Hiring Manager</label><br>
             <select name="location" id="location" [(ngModel)]="onboard.hmId"  required>
-                <option *ngFor="let hm of hiringManager" [ngValue]=hm.hId>{{hm.name}}</option> 
+                <option *ngFor="let hm of hiringManager" [ngValue]=hm.hmId>{{hm.name}}</option> 
             </select><br>
         </div>
         <div class="form-group">

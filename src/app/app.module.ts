@@ -11,19 +11,14 @@ import { HomeComponent } from './home/home.component';
 import { SharedModule } from './shared/shared.module';
 import { CoreModule } from './core/core.module';
 import { SocialLoginModule, SocialAuthServiceConfig } from 'angularx-social-login';
-
-import {
-  GoogleLoginProvider,
-  FacebookLoginProvider
-} from 'angularx-social-login';
-import { AuthorizationService } from './auth/services/authorization.service';
-
+import { PageNotFoundComponent } from './page-not-found.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
@@ -36,22 +31,6 @@ import { AuthorizationService } from './auth/services/authorization.service';
     CoreModule,
     HttpClientModule,
     RouterModule
-  ],
-  providers: [
-    {
-      provide: 'SocialAuthServiceConfig',
-      useValue: {
-        autoLogin: false,
-        providers: [
-          {
-            id: GoogleLoginProvider.PROVIDER_ID,
-            provider: new GoogleLoginProvider(
-              '720710474978-tb9oud47mc2163r3a96t60pvi2ar58qr.apps.googleusercontent.com'
-            )
-          }
-        ]
-      } as SocialAuthServiceConfig,
-    },
   ],
   bootstrap: [AppComponent]
 })

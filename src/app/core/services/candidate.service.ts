@@ -15,7 +15,21 @@ export class CandidateService {
       return this.httpClient.get<Candidate[]>(`${this.baseUrl}`);
   }
 
-  getCandidateById(candidateId: number): Observable<Candidate>{
-    return this.httpClient.get<Candidate>(`${this.baseUrl}/candidateId=${candidateId}`);
+  getCandidateById(candidateId: string): Observable<Candidate[]>{
+    return this.httpClient.get<Candidate[]>(`${this.baseUrl}/candidateId=${candidateId}`);
+  }
+
+  getCandidatesByFirstName(firstName: string): Observable<Candidate[]>{
+    return this.httpClient.get<Candidate[]>(`${this.baseUrl}/firstName=${firstName}`);
+  }
+
+  getCandidatesByLastName(lastName: string): Observable<Candidate[]>{
+    return this.httpClient.get<Candidate[]>(`${this.baseUrl}/lastName=${lastName}`);
+  }
+  getCandidatesByCollege(college: string): Observable<Candidate[]>{
+    return this.httpClient.get<Candidate[]>(`${this.baseUrl}/college=${college}`);
+  }
+  getCandidatesBySkill(skill: string): Observable<Candidate[]>{
+    return this.httpClient.get<Candidate[]>(`${this.baseUrl}/skill=${skill}`);
   }
 }

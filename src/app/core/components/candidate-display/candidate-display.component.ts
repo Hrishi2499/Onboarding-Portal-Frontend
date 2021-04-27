@@ -12,7 +12,6 @@ export class CandidateDisplayComponent implements OnInit {
 
   parameter: string;
   value: string;
-  temp: Candidate[];
   candidates: Candidate[];
   constructor(private candidateService:CandidateService, private router: Router) { }
 
@@ -23,7 +22,6 @@ export class CandidateDisplayComponent implements OnInit {
   private getAllCandidates(){
       this.candidateService.getFullCandidateList().subscribe((data) =>{
         this.candidates = data;  
-        this.temp = data;
       });
   }
 
@@ -33,36 +31,31 @@ export class CandidateDisplayComponent implements OnInit {
 
   searchByParameter(){
     switch (this.parameter){
-      case "candidateId": this.candidates = this.temp;
-                          this.candidates = this.candidates.filter((candidate) =>{
-                              return candidate.candidateId == Number(this.value);
-                          });
+      case "candidateId": this.candidateService.getCandidateById(this.value).subscribe((data) =>{
+                          this.candidates = data;  
+                           });
                           break;
-      case "firstName": this.candidates = this.temp;
-                        this.candidates = this.candidates.filter((candidate) =>{
-                            return candidate.firstName.toLowerCase().includes((this.value.toLowerCase()));
+      case "firstName": this.candidateService.getCandidatesByFirstName(this.value).subscribe((data) =>{
+                        this.candidates = data;  
                         });
                         break;
-      case "lastName": this.candidates = this.temp;
-                        this.candidates = this.candidates.filter((candidate) =>{
-                            return candidate.lastName.toLowerCase().includes((this.value.toLowerCase()));
-                        });
+      case "lastName": this.candidateService.getCandidatesByLastName(this.value).subscribe((data) =>{
+                        this.candidates = data;  
+                         });  
                         break;
-      case "college": this.candidates = this.temp;
-                      this.candidates = this.candidates.filter((candidate) =>{
-                          return candidate.college.toLowerCase().includes((this.value.toLowerCase()));
-                      });
+      case "college": this.candidateService.getCandidatesByCollege(this.value).subscribe((data) =>{
+                      this.candidates = data;  
+                       });
                       break;
-      case "skills": this.candidates = this.temp;
-                      this.candidates = this.candidates.filter((candidate) =>{
-                          return candidate.skills.includes(this.value);
-                      });
+      case "skill": this.candidateService.getCandidatesBySkill(this.value).subscribe((data) =>{
+                      this.candidates = data;  
+                       });
       
     }
   }
 
   resetSearch(){
-      this.candidates = this.temp;
+      this.getAllCandidates();
   }
 
 }

@@ -1,17 +1,17 @@
 <div class="jumbotron bg-transparent text-center">
-    <div *ngIf="!user" class="card text-center">
+    <div class="card text-center">
       <h6 class="card-header">
         MSAU Onboarding Portal
       </h6>
       <div class="row">
         <div class="col-md-6 offset-md-3 mt-4">
             <h3>Login</h3>
-            <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+            <form #f="ngForm" (ngSubmit)="onSubmit()">
                 <div class="form-group">
                     <label for="loginUsername">Username</label>
                     <input type="text"
                            name="username"
-                           ngModel
+                           [(ngModel)] = "hmEmail"
                            required
                            #username="ngModel"
                            class="form-control"
@@ -23,7 +23,7 @@
                     <input type="password"
                            class="form-control"
                            name="password"
-                           ngModel
+                           [(ngModel)] = "hmPassword"
                            required
                            #password="ngModel"
                            id="loginPassword"

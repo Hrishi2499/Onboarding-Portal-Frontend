@@ -15,8 +15,44 @@ export class OnboardService {
     return this.httpClient.get<Onboard[]>(`${this.baseUrl}`);
   }
 
-  getOnboardByOnboardId(onboardId:number):Observable<Onboard>{
-    return this.httpClient.get<Onboard>(`${this.baseUrl}`+`/onboardId=${onboardId}`);
+  getOnboardByOnboardId(onboardId:string):Observable<Onboard[]>{
+    return this.httpClient.get<Onboard[]>(`${this.baseUrl}`+`/onboardId=${onboardId}`);
+  }
+
+  getOnboardByCandidateId(candidateId:string):Observable<Onboard[]>{
+    return this.httpClient.get<Onboard[]>(`${this.baseUrl}`+`/candidateId=${candidateId}`);
+  }
+
+  getOnboardByhmId(hmId:string):Observable<Onboard[]>{
+    return this.httpClient.get<Onboard[]>(`${this.baseUrl}`+`/hmId=${hmId}`);
+  }
+
+  getOnboardByFirstName(firstName:string):Observable<Onboard[]>{
+    return this.httpClient.get<Onboard[]>(`${this.baseUrl}`+`/firstName=${firstName}`);
+  }
+
+  getOnboardByLastName(lastName:string):Observable<Onboard[]>{
+    return this.httpClient.get<Onboard[]>(`${this.baseUrl}`+`/lastName=${lastName}`);
+  }
+
+  getOnboardByLocation(location:string):Observable<Onboard[]>{
+    return this.httpClient.get<Onboard[]>(`${this.baseUrl}`+`/location=${location}`);
+  }
+
+  getOnboardBySkill(skill:string):Observable<Onboard[]>{
+    return this.httpClient.get<Onboard[]>(`${this.baseUrl}`+`/skill=${skill}`);
+  }
+
+  getOnboardByCollege(college:string):Observable<Onboard[]>{
+    return this.httpClient.get<Onboard[]>(`${this.baseUrl}`+`/college=${college}`);
+  }
+
+  getOnboardByManagerName(manager:string):Observable<Onboard[]>{
+    return this.httpClient.get<Onboard[]>(`${this.baseUrl}`+`/managerName=${manager}`);
+  }
+
+  getOnboardByOnboardStatus(status:string):Observable<Onboard[]>{
+    return this.httpClient.get<Onboard[]>(`${this.baseUrl}`+`/onboardStatus=${status}`);
   }
 
   createOnboard(onboard:Onboard): Observable<Onboard[]>{
@@ -27,7 +63,8 @@ export class OnboardService {
     return this.httpClient.post<Onboard[]>(`${this.baseUrl}`,onboard);
   }
 
-  deleteOnboard(onboardId:number):any{
-    return this.httpClient.delete(`${this.baseUrl}`+`/onboardId=${onboardId}`);
+  deleteOnboard(onboardId:number, user:string, userEmail:string):any{
+    return this.httpClient.delete(`${this.baseUrl}`+
+                                  `/onboardId=${onboardId}&user=${user}&userEmail=${userEmail}`);
   }
 }

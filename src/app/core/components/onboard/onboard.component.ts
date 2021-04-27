@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AuthorizationService } from 'src/app/auth/services/authorization.service';
 import { Candidate } from '../../model/candidate';
 import { HiringManager } from '../../model/hiring-manager';
 import { Onboard } from '../../model/onboard';
@@ -14,7 +15,7 @@ import { OnboardService } from '../../services/onboard.service';
 })
 export class OnboardComponent implements OnInit {
 
-  candidateId: number;
+  candidateId: string;
   candidate: Candidate;
   onboard: Onboard = new Onboard();
   hiringManager: HiringManager[];
@@ -22,7 +23,7 @@ export class OnboardComponent implements OnInit {
 
   constructor(private candidateService: CandidateService, private route: ActivatedRoute,
               private onboardService: OnboardService, private router: Router,
-              private hiringManagerService: HiringManagerService) { }
+              private hiringManagerService: HiringManagerService, private authService: AuthorizationService) { }
 
   ngOnInit(): void {
     this.candidate = new Candidate();
@@ -32,7 +33,7 @@ export class OnboardComponent implements OnInit {
     });
 
     this.candidateService.getCandidateById(this.candidateId).subscribe((data) =>{
-      this.candidate = data;
+      this.candidate = data[0];
       this.isDataAvailable = true;
     }, error =>{
       window.alert("Onboarding process for this candidate already started");
@@ -41,12 +42,15 @@ export class OnboardComponent implements OnInit {
   }
 
   createOnboard(onboard: Onboard){
-    this.onboardService.createOnboard(onboard).subscribe((data) =>{
-      window.alert("Onboard Created!");
-      this.router.navigate(['/onboardees']);
-    }, error =>{
-      window.alert("Onboarding process for this candidate failed, please try again");
-      this.router.navigate(['/candidates']);
+    onboard.user = this.authService.user.name;
+    onboard.userEmail = this.authService.user.email;
+    console.log(this.onboard);
+     this.onboardService.createOnboard(onboard).subscribe((data) =>{
+       window.alert("Onboard Created!");
+       this.router.navigate(['/onboardees']);
+     }, error =>{
+       window.alert("Onboarding process for this candidate failed, please try again");
+       this.router.navigate(['/candidates']);
     });
 }
 
@@ -60,7 +64,7 @@ export class OnboardComponent implements OnInit {
     
     if(this.onboard.training != true)
       this.onboard.training = false;
-    console.log(this.onboard);
+
     this.createOnboard(this.onboard);
   }
 

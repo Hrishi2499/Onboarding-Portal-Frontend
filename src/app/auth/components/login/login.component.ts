@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { SocialAuthService } from "angularx-social-login";
-import { SocialUser } from 'angularx-social-login';
 import { GoogleLoginProvider, FacebookLoginProvider} from 'angularx-social-login';
+import { HiringManager } from 'src/app/core/model/hiring-manager';
+import { HiringManagerService } from 'src/app/core/services/hiring-manager.service';
 import { AuthorizationService } from '../../services/authorization.service';
 
 @Component({
@@ -13,17 +13,15 @@ import { AuthorizationService } from '../../services/authorization.service';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
-  
-  user: SocialUser;
 
+  hmEmail: string;
+  hmPassword: string;
+  
   constructor(private authService: SocialAuthService,
-              private router: Router,
-              public authorizationService: AuthorizationService) { }
+              private router: Router, private hmService: HiringManagerService,
+              private authorizationService: AuthorizationService) { }
 
   ngOnInit(): void {
-    this.authService.authState.subscribe((user) => {
-      this.user = user;
-    });
   }
 
   refreshToken(): void {
@@ -31,14 +29,23 @@ export class LoginComponent implements OnInit {
   }
 
   loginWithGoogle(): void{
-    this.authService.signIn(GoogleLoginProvider.PROVIDER_ID).then(() =>{
-      this.authorizationService.checkLogin(this.user.authToken),
-      this.router.navigate(['/home'])
+    this.authService.signIn(GoogleLoginProvider.PROVIDER_ID).then((data) =>{
+      this.authorizationService.checkLogin();
     }
     );
-  };
-  onSubmit(f:any){
-      //kept blank for now
   }
-}
+  onSubmit(){
+      //kept blank for now
+      this.hmService.getHiringManagerByEmail(this.hmEmail).subscribe((data) =>{
+        if(data == null || data.password != this.hmPassword){
+          alert("Please Check EmailId/Password");
+        }
+        else{
+          this.authorizationService.normalLogin(data);
+        }
+      });
+
+      }
+
+  }
 

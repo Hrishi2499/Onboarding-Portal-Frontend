@@ -2,6 +2,8 @@ import { Candidate } from "./candidate";
 import { HiringManager } from "./hiring-manager";
 
 export class Onboard {
+	user: string;
+	userEmail:string;
     onboardId:number;
 	candidateId:number;
 	hmId: number;

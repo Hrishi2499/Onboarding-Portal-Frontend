@@ -13,4 +13,7 @@ export class HiringManagerService {
   getAllHiringManagers(){
     return this.httpClient.get<HiringManager[]>(`${this.baseUrl}`);
   }
+  getHiringManagerByEmail(email:string){
+    return this.httpClient.get<HiringManager>(`${this.baseUrl}/hmEmail=${email}`);
+  }
 }

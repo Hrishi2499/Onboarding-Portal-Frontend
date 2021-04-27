@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthorizationService } from 'src/app/auth/services/authorization.service';
 import { Onboard } from '../../model/onboard';
 import { OnboardService } from '../../services/onboard.service';
 
@@ -10,72 +11,80 @@ import { OnboardService } from '../../services/onboard.service';
 })
 export class OnboardDisplayComponent implements OnInit {
 
-  temp: Onboard[];
   parameter: string;
   value: string;
   onboards:Onboard[];
-  constructor(private onboardService: OnboardService, private router: Router) { }
+  constructor(private onboardService: OnboardService, private router: Router,
+              private authService: AuthorizationService) { }
 
   ngOnInit(): void {
-    this.getAllOnboards();
-  }
-  getAllOnboards(){
     this.onboardService.getFullOnboardsList().subscribe((data) =>{
       this.onboards = data;  
-      this.temp = data;
     });
+  }
+
+  updateOnboard(onboardId:number){
+    this.router.navigate(['/update-onboard',onboardId]);
   }
 
   deleteOnboard(onboardId:number){
       if(confirm("Are you sure you want to delete Onboard with Id: " + onboardId +" ?"))
-          this.onboardService.deleteOnboard(onboardId).subscribe((data:any) =>{
-              window.location.reload();
+          this.onboardService.deleteOnboard(onboardId,this.authService.user.name,
+                                            this.authService.user.email).subscribe(() =>{
+              this.router.navigate(['/candidates'])
+          }, () =>{
+            alert("Delete Failed");
           });
     }
-  updateOnboard(onboardId:number){
-    this.router.navigate(['/update-onboard',onboardId]);
-  }
+  
   searchByParameter(){
     switch (this.parameter){
-      case "onboardId": this.onboards = this.temp;
-                          this.onboards = this.onboards.filter((onboard) =>{
-                              return onboard.onboardId == Number(this.value);
+      case "onboardId": this.onboardService.getOnboardByOnboardId(this.value).subscribe((data) =>{
+                          this.onboards = data;  
+                        });
+                          break;
+      case "candidateId": this.onboardService.getOnboardByCandidateId(this.value).subscribe((data) =>{
+                            this.onboards = data;  
                           });
                           break;
-      case "candidateId": this.onboards = this.temp;
-                          this.onboards = this.onboards.filter((onboard) =>{
-                              return onboard.candidateId == Number(this.value);
+      case "hmId"      : this.onboardService.getOnboardByhmId(this.value).subscribe((data) =>{
+                            this.onboards = data;  
                           });
                           break;
-      case "onboardStatus": this.onboards = this.temp;
-                            this.onboards = this.onboards.filter((onboard) =>{
-                              return onboard.onboardStatus.toLowerCase().includes((this.value.toLowerCase()));
+      case "onboardStatus": this.onboardService.getOnboardByOnboardStatus(this.value).subscribe((data) =>{
+                            this.onboards = data;  
                           });
                           break;
-      case "firstName": this.onboards = this.temp;
-                        this.onboards = this.onboards.filter((onboard) =>{
-                            return onboard.candidate.firstName.toLowerCase().includes((this.value.toLowerCase()));
+      case "firstName": this.onboardService.getOnboardByFirstName(this.value).subscribe((data) =>{
+                          this.onboards = data;  
                         });
                         break;
-      case "lastName": this.onboards = this.temp;
-                        this.onboards = this.onboards.filter((onboard) =>{
-                            return onboard.candidate.lastName.toLowerCase().includes((this.value.toLowerCase()));
+      case "lastName": this.onboardService.getOnboardByLastName(this.value).subscribe((data) =>{
+                          this.onboards = data;  
                         });
                         break;
-      case "college": this.onboards = this.temp;
-                      this.onboards = this.onboards.filter((onboard) =>{
-                          return onboard.candidate.college.toLowerCase().includes((this.value.toLowerCase()));
+      case "college": this.onboardService.getOnboardByCollege(this.value).subscribe((data) =>{
+                        this.onboards = data;  
                       });
                       break;
-      case "location": this.onboards = this.temp;
-                      this.onboards = this.onboards.filter((onboard) =>{
-                          return onboard.location.toLowerCase().includes((this.value.toLowerCase()));
+      case "location": this.onboardService.getOnboardByLocation(this.value).subscribe((data) =>{
+                        this.onboards = data;  
+                      });
+                      break;
+      case "skill": this.onboardService.getOnboardBySkill(this.value).subscribe((data) =>{
+                        this.onboards = data;  
+                      });
+                      break;
+      case "managerName": this.onboardService.getOnboardByManagerName(this.value).subscribe((data) =>{
+                        this.onboards = data;  
                       });
                       break;
     }
   }
 
   resetSearch(){
-      this.onboards = this.temp;
+    this.onboardService.getFullOnboardsList().subscribe((data) =>{
+      this.onboards = data;  
+    });
   }
 }

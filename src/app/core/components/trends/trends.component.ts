@@ -14,6 +14,7 @@ export class TrendsComponent implements OnInit{
   highcharts: Highcharts.Chart;
   displayObject: TrendData = new TrendData();
   displayObject2: TrendData = new TrendData();
+  displayObject3: TrendData = new TrendData();
   series: any;
   area: string;
 
@@ -37,6 +38,16 @@ export class TrendsComponent implements OnInit{
       this.series = this.getSeries(this.displayObject2);
       this.area = 'container2';
       this.draw(this.displayObject2);
+    });
+
+    this.trendsService.getTrendBySkill().subscribe((data) =>{
+      this.displayObject3.name = data["name"];
+      this.displayObject3.years = data["years"];
+      this.displayObject3.columns = data["columns"];
+      this.displayObject3.data = data["data"];
+      this.series = this.getSeries(this.displayObject3);
+      this.area = 'container3';
+      this.draw(this.displayObject3);
     });
     
   }

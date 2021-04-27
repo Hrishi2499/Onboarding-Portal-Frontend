@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AuthorizationService } from 'src/app/auth/services/authorization.service';
 import { HiringManager } from '../../model/hiring-manager';
 import { Onboard } from '../../model/onboard';
 import { HiringManagerService } from '../../services/hiring-manager.service';
@@ -14,16 +15,17 @@ export class UpdateOnboardComponent implements OnInit {
 
   onboard: Onboard = new Onboard();
   hiringManager: HiringManager[];
-  onboardId: number;
+  onboardId: string;
   isDataAvailable = false;
 
   constructor(private onboardService: OnboardService, private router: Router,
-              private route: ActivatedRoute, private hiringManagerService: HiringManagerService) { }
+              private route: ActivatedRoute, private hiringManagerService: HiringManagerService,
+              private authService: AuthorizationService) { }
 
   ngOnInit(): void {
       this.onboardId =  this.route.snapshot.params["onboardId"];
       this.onboardService.getOnboardByOnboardId(this.onboardId).subscribe((data) =>{
-        this.onboard = data;
+        this.onboard = data[0];
         this.isDataAvailable = true;
       }, error =>{
           window.alert("This Onboard does not exsist");
@@ -43,6 +45,9 @@ export class UpdateOnboardComponent implements OnInit {
     
     if(this.onboard.training != true)
       this.onboard.training = false;
+
+    this.onboard.user = this.authService.user.name;
+    this.onboard.userEmail = this.authService.user.email;
 
     this.onboardService.updateOnboard(this.onboard).subscribe((data) =>{
         window.alert("Onboard updated successfully");

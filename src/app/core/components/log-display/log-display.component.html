@@ -1,0 +1,91 @@
+<app-navbar></app-navbar>
+<h1 class = "text-center" >Onboard Logs</h1>
+<!-- Search Bar --> 
+<div class="container">
+  <form >
+    <div class="form-row" style= "align-self: center;">
+      <div class="form-group col-md-3">
+        <select id="parameter" name = "parameter" [(ngModel)] = "parameter" class="form-control">
+          <option value="onboardId">Onboard Id</option>
+          <option value="candidateId">Candidate Id</option>
+          <option value="user">User</option>
+          <option value="year">Year</option>
+          <option value="month">Month</option>
+          <option value="date">Date</option>
+        </select><br>
+      </div>
+      <div class="form-group col-md-7">
+        <input type="text" name = "value" [(ngModel)] = "value" class="form-control" id="value" placeholder="Search by parameters">
+      </div>
+      <div class="form-group col-md-1">
+        <button type="submit" (click) = "searchByParameter()" class="btn btn-primary">Search</button>
+      </div>
+      <div class="form-group col-md-1">
+        <button type="submit" (click) = "resetSearch()" class="btn btn-primary">Reset</button>
+      </div>
+      <div class = "form-group col-md-5">
+        <label for="month">To Search by Month and Year: </label>
+        <input type="month" id="month" name="month" [(ngModel)] = "value" class="form-control">
+    </div>
+    <div class = "form-group col-md-5">
+        <label for="date">To Search by Date: </label>
+        <input type="date" id="date" name="date" [(ngModel)] = "value" class="form-control">
+    </div>
+    </div>
+    </form>
+  </div>
+
+<!-- Candidate cards -->
+<div class="container">
+      <table class="table table-striped">
+          <thead>
+            <th>
+                Log ID
+            </th>
+            <th>
+                Timestamp
+            </th>
+            <th>
+                Action
+            </th>
+            <th>
+                User
+            </th>
+            <th>
+                User EmailId
+            </th>
+          </thead>
+        <tbody>
+          <tr *ngFor = "let log of logs">
+                <td colspan="1">
+                    {{log.logId}} <br>
+                    <details>
+                        <summary>Onboard Details Set</summary>
+                        <span>Onboard Id: {{log.onboard.onboardId}}</span><br>
+                        <span>Candidate Id: {{log.onboard.candidateId}}</span><br>
+                        <span>Hiring Manager Id:{{log.onboard.hmId}}</span><br>
+                        <span>Eta: {{log.onboard.eta}}</span><br>
+                        <span>Location: {{log.onboard.location}}</span><br>
+                        <span>Background Status: <span *ngIf="log.onboard.bgStatus; else Pending">Done</span></span><br>
+                        <span>Graduation Status: <span *ngIf="log.onboard.graduation; else Pending">Done</span></span><br>
+                        <span>Training Status: <span *ngIf="log.onboard.training; else Pending">Done</span></span><br>
+                    </details>
+                    <ng-template #Pending>Pending</ng-template>
+                </td>
+                <td colspan="1">
+                    {{log.timestamp}}
+                </td>
+                <td colspan="1">
+                    {{log.action}}
+                </td>
+                <td colspan="1">
+                    {{log.user}}
+                </td>
+                <td colspan="1">
+                    {{log.userEmail}}
+                </td>
+          </tr>
+        </tbody>
+      </table>
+</div>
+<app-footer></app-footer>

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router } from '@angular/router';
+import { SocialUser } from 'angularx-social-login';
 import {AuthorizationService} from './authorization.service'
 
 @Injectable({
@@ -7,17 +8,16 @@ import {AuthorizationService} from './authorization.service'
 })
 export class AuthGuard implements CanActivate {
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private authorizationService: AuthorizationService) {}
 
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): true | UrlTree {
-    return true; //Fow now, until backend is used to save token
+      return this.check();
   }
 
   check(){
-    console.log(AuthorizationService.token);
-    if(AuthorizationService.token == localStorage.getItem('token')){
+    if(this.authorizationService.loggedIn){
       return true;
     }
     return this.router.parseUrl('/login');

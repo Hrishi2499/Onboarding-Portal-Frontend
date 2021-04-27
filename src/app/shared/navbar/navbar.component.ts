@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { SocialAuthService } from 'angularx-social-login';
+import { AuthorizationService } from 'src/app/auth/services/authorization.service';
 
 
 @Component({
@@ -11,13 +12,12 @@ import { SocialAuthService } from 'angularx-social-login';
 export class NavbarComponent implements OnInit {
 
   constructor(private router: Router, 
-              private authService: SocialAuthService) { }
+              private authService: AuthorizationService) { }
 
   ngOnInit(): void {
   }
 
   signOut(): void {
-    localStorage.removeItem('token');
-    this.router.navigate(['/login']);
+    this.authService.logout();
   }
 }
