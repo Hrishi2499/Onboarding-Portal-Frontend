@@ -31,6 +31,8 @@ export class LoginComponent implements OnInit {
   loginWithGoogle(): void{
     this.authService.signIn(GoogleLoginProvider.PROVIDER_ID).then((data) =>{
       this.authorizationService.checkLogin();
+    }, (err) =>{
+      alert("Please login through accolite account and check password");
     }
     );
   }

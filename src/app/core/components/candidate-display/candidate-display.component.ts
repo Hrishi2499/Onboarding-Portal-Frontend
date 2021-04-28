@@ -22,6 +22,9 @@ export class CandidateDisplayComponent implements OnInit {
   private getAllCandidates(){
       this.candidateService.getFullCandidateList().subscribe((data) =>{
         this.candidates = data;  
+      }, () =>{
+        alert("Some error occured, Please try again later");
+        this.router.navigate(['home'])
       });
   }
 
@@ -33,28 +36,45 @@ export class CandidateDisplayComponent implements OnInit {
     switch (this.parameter){
       case "candidateId": this.candidateService.getCandidateById(this.value).subscribe((data) =>{
                           this.candidates = data;  
+                           }, () =>{
+                             alert("No records Found, please check the search parameter, it must be a number");
+                             this.resetSearch();
                            });
                           break;
       case "firstName": this.candidateService.getCandidatesByFirstName(this.value).subscribe((data) =>{
                         this.candidates = data;  
+                        }, () =>{
+                          alert("No records Found, please check the search parameter");
+                          this.resetSearch();
                         });
                         break;
       case "lastName": this.candidateService.getCandidatesByLastName(this.value).subscribe((data) =>{
                         this.candidates = data;  
-                         });  
+                         }, () =>{
+                          alert("No records Found, please check the search parameter");
+                          this.resetSearch();
+                        });  
                         break;
       case "college": this.candidateService.getCandidatesByCollege(this.value).subscribe((data) =>{
                       this.candidates = data;  
-                       });
+                       }, () =>{
+                        alert("No records Found, please check the search parameter");
+                        this.resetSearch();
+                      });
                       break;
       case "skill": this.candidateService.getCandidatesBySkill(this.value).subscribe((data) =>{
                       this.candidates = data;  
-                       });
+                       }, () =>{
+                        alert("No records Found, please check the search parameter");
+                        this.resetSearch();
+                      });
       
     }
   }
 
   resetSearch(){
+      this.value ="";
+      this.parameter="";
       this.getAllCandidates();
   }
 

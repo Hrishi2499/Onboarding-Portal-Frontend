@@ -27,8 +27,8 @@ export class LogDisplayComponent implements OnInit {
     this.onboardLogSerivice.getFullOnboardLogsList().subscribe((data) =>{
       this.logs = data;
   }, ()=>{
-      alert("Some Error Occured");
-      this.router.navigate(['candidates']);
+      alert("Some Error Occured, Please try again later");
+      this.router.navigate(['home']);
   });
   }
 
@@ -78,10 +78,12 @@ export class LogDisplayComponent implements OnInit {
   }
   displayErrorMessage() {
     alert("Please check the search parameters once again");
-    this.getAllLogs();
+    this.resetSearch();
 
   }
   resetSearch(){
+      this.value = "";
+      this.parameter="";
       this.getAllLogs();
   }
 

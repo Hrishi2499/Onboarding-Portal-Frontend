@@ -28,7 +28,8 @@ import { GoogleLoginProvider, SocialAuthServiceConfig, SocialLoginModule } from 
           {
             id: GoogleLoginProvider.PROVIDER_ID,
             provider: new GoogleLoginProvider(
-              '720710474978-tb9oud47mc2163r3a96t60pvi2ar58qr.apps.googleusercontent.com'
+              '720710474978-tb9oud47mc2163r3a96t60pvi2ar58qr.apps.googleusercontent.com',
+              {hosted_domain: 'accolitedigital.com', approvalprompt: "force"}
             )
           }
         ]
