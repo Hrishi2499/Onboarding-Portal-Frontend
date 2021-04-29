@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router } from '@angular/router';
-import { SocialUser } from 'angularx-social-login';
 import {AuthorizationService} from './authorization.service'
 
 @Injectable({

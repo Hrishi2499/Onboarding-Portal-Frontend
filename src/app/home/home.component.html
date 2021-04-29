@@ -1,3 +1,51 @@
 <app-navbar></app-navbar>
-<p>home works!</p>
+<div class = "container">
+    <h1>
+        Welcome to the AU Management System's Onboarding Portal
+    </h1>
+    <h4>Features</h4>
+
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Candidates Display</h5>
+        <p class="card-text">This page displays the list of available candidates for onboarding.
+            The candidates details are displayed and onboard button takes user to create onboard page. 
+            A search option is provided with various search parameters. 
+        </p>
+        <a routerLink="/candidates" class="btn btn-primary">Candidates &#10149; </a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Onboardees Display</h5>
+        <p class="card-text">This page displays the list of onboardees.
+            The details of onboarding process are displayed and edit button takes user to update onboard page, 
+            to update some details. The delete button deletes the onboard process. The candidate becomes available
+            for onboarding again on the candidates displaypage. 
+            A search option is provided with various search parameters.</p>
+        <a routerLink="/onboardees" class="btn btn-primary">Onboardees &#10149;</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Analytics</h5>
+        <p class="card-text">This page displays three graphs showing the onboarding trends across 
+            location, hiring managers and skills across the years.
+        </p>
+        <a routerLink="/trends" class="btn btn-primary">Analytics &#10149;</a>
+      </div>
+  </div>
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Logs</h5>
+        <p class="card-text">This page displays the logs of create, update and delete operations 
+            on the onboards and the users who made them. A search option is provided to search across 
+            various parameters.
+        </p>
+        <a routerLink="/logs" class="btn btn-primary">Logs &#10149;</a>
+      </div>
+</div>
+</div>
 <app-footer></app-footer>

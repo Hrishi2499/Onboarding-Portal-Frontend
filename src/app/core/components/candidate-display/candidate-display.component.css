@@ -5,3 +5,8 @@
 .table td, .table th{
     vertical-align: middle;
 }
+.table td{
+    margin: 1em;
+    padding: 1em;
+    line-height: 50px;
+}

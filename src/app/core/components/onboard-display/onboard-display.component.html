@@ -1,5 +1,7 @@
 <app-navbar></app-navbar>
-<h1 class = "text-center" >Onboard List</h1>
+<div class = "container">
+  <h1 class = "text-center" style="margin: 20px;">Onboardees List</h1>
+</div>
 <!-- Search Bar --> 
 <div class="container">
   <form >
@@ -40,27 +42,35 @@
                 <td colspan="1">
                     Candidate ID: {{onboard.candidate.candidateId}}
                     <br>
-                    Onboard ID: {{onboard.onboardId}} 
+                    Name: {{onboard.candidate.firstName}} {{onboard.candidate.lastName}}       
                     <br>
-                    Manager ID: {{onboard.hiringManager.hmId}}
+                    
+                    <br>
+                    <details>
+                      <summary>Candidate Details</summary>
+                      <span>Email Id: {{onboard.candidate.email}}</span><br>
+                      <span>College: {{onboard.candidate.college}}</span><br>
+                      <span>Skill: {{onboard.candidate.skill}}</span><br>
+                  </details>
+                </td>
+
+                <td colspan="1">
+                  Manager ID: {{onboard.hiringManager.hmId}}
+                    <br>
+                    Manager Name: {{onboard.hiringManager.name}}
                     <br>
                 </td>
 
                 <td colspan="2">
-                      Name: {{onboard.candidate.firstName}} {{onboard.candidate.lastName}}      
+                  Onboard ID: {{onboard.onboardId}}
                         <br>
                         Date of Creation: {{onboard.startDate}}
                         <br>
-                        Manager Name: {{onboard.hiringManager.name}}
+                        Onboard Location: {{onboard.location}}
+                        <br>
+                        Expected Onboarding Date: {{onboard.eta}}
                 </td>
 
-                <td colspan="1">
-                    Skill: {{onboard.candidate.skill}}
-                    <br>
-                    Expected Onboarding Date: {{onboard.eta}}
-                    <br>
-                    Onboard Location: {{onboard.location}}
-                </td>
                 <td colspan="1">
                   Background Status: <span *ngIf="onboard.bgStatus; else Pending">Done</span>
                   <br>
@@ -72,7 +82,7 @@
                   <ng-template #Pending>Pending</ng-template>
               </td>
                     <td>
-                        <button (click)="updateOnboard(onboard.onboardId)" class="btn btn-primary">Edit</button>
+                        <button (click)="updateOnboard(onboard.onboardId)" class="btn btn-primary"> &nbsp;Edit&nbsp; </button>
                         <br><br>
                         <button (click)="deleteOnboard(onboard.onboardId)" class="btn btn-danger">Delete</button>
                     </td>

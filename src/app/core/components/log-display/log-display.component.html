@@ -1,7 +1,9 @@
 <app-navbar></app-navbar>
-<h1 class = "text-center" >Onboard Logs</h1>
+<div class = "container">
+  <h1 class = "text-center" style="margin: 20px;">Onboards Logs</h1>
+</div>
 <!-- Search Bar --> 
-<div class="container">
+<div class="container" style="margin-bottom: 10px">
   <form >
     <div class="form-row" style= "align-self: center;">
       <div class="form-group col-md-3">
@@ -42,7 +44,7 @@
             <th>
                 Log ID
             </th>
-            <th>
+            <th colspan="2">
                 Timestamp
             </th>
             <th>
@@ -72,7 +74,7 @@
                     </details>
                     <ng-template #Pending>Pending</ng-template>
                 </td>
-                <td colspan="1">
+                <td colspan="2">
                     {{log.timestamp}}
                 </td>
                 <td colspan="1">

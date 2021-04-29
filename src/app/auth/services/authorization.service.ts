@@ -24,7 +24,7 @@ export class AuthorizationService {
     this.authService.authState.subscribe((user) =>{
       this.user = user;
       this.loggedIn = (user != null);
-      console.log(user);
+      
       if(this.loggedIn){
         this.idToken = user.idToken;
         this.router.navigate(['/home']);

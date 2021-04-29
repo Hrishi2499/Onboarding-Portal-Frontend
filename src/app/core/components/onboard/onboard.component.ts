@@ -44,7 +44,6 @@ export class OnboardComponent implements OnInit {
   createOnboard(onboard: Onboard){
     onboard.user = this.authService.user.name;
     onboard.userEmail = this.authService.user.email;
-    console.log(this.onboard);
      this.onboardService.createOnboard(onboard).subscribe((data) =>{
        window.alert("Onboard Created!");
        this.router.navigate(['/onboardees']);
