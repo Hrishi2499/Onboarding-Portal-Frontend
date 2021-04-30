@@ -10,8 +10,8 @@ import { OnboardLogService } from '../../services/onboard-log.service';
 })
 export class LogDisplayComponent implements OnInit {
 
-  parameter: string;
-  value: string;
+  parameter: string ="";
+  value: string = "";
   month:Date;
   date: Date;
   logs:OnboardLog[];
@@ -33,14 +33,26 @@ export class LogDisplayComponent implements OnInit {
   }
 
   searchByParameter(){
+    if(this.value == "" || this.parameter == ""){
+      alert("Input cannot be empty !");
+      return;
+    }
       switch (this.parameter){
-        case "candidateId": this.onboardLogSerivice.getOnboardLogByCandidateId(this.value).subscribe((data) =>{
+        case "candidateId": if(! /^\d+$/.test(this.value)){
+                              alert("Input cannot contain alphabets!");
+                              return;
+                            }
+                            this.onboardLogSerivice.getOnboardLogByCandidateId(this.value).subscribe((data) =>{
                             this.logs = data;  
                              }, () =>{
                                this.displayErrorMessage();
                              });
                             break;
-        case "onboardId": this.onboardLogSerivice.getOnboardLogByOnboardId(this.value).subscribe((data) =>{
+        case "onboardId": if(! /^\d+$/.test(this.value)){
+                            alert("Input cannot contain alphabets!");
+                            return;
+                          }
+                          this.onboardLogSerivice.getOnboardLogByOnboardId(this.value).subscribe((data) =>{
                           this.logs = data;  
                           }, () =>{
                             this.displayErrorMessage();

@@ -11,8 +11,8 @@ import { OnboardService } from '../../services/onboard.service';
 })
 export class OnboardDisplayComponent implements OnInit {
 
-  parameter: string;
-  value: string;
+  parameter: string ="";
+  value: string = "";
   onboards:Onboard[];
   constructor(private onboardService: OnboardService, private router: Router,
               private authService: AuthorizationService) { }
@@ -45,22 +45,38 @@ export class OnboardDisplayComponent implements OnInit {
     }
   
   searchByParameter(){
+    if(this.value == "" || this.parameter == ""){
+      alert("Input cannot be empty !");
+      return;
+    }
     switch (this.parameter){
-      case "onboardId": this.onboardService.getOnboardByOnboardId(this.value).subscribe((data) =>{
+      case "onboardId": if(! /^\d+$/.test(this.value)){
+                          alert("Input cannot contain alphabets!");
+                          return;
+                        }
+                        this.onboardService.getOnboardByOnboardId(this.value).subscribe((data) =>{
                           this.onboards = data;  
                         },() =>{
                           alert("No records found, please check the search parameters, it must be a number");
                           this.resetSearch();
                         });
                           break;
-      case "candidateId": this.onboardService.getOnboardByCandidateId(this.value).subscribe((data) =>{
+      case "candidateId": if(! /^\d+$/.test(this.value)){
+                            alert("Input cannot contain alphabets!");
+                            return;
+                          }
+                          this.onboardService.getOnboardByCandidateId(this.value).subscribe((data) =>{
                             this.onboards = data;  
                           },() =>{
                             alert("No records found, please check the search parameters, it must be a number");
                             this.resetSearch();
                           });
                           break;
-      case "hmId"      : this.onboardService.getOnboardByhmId(this.value).subscribe((data) =>{
+      case "hmId"      : if(! /^\d+$/.test(this.value)){
+                            alert("Input cannot contain alphabets!");
+                            return;
+                          }
+                          this.onboardService.getOnboardByhmId(this.value).subscribe((data) =>{
                             this.onboards = data;  
                           },() =>{
                             alert("No records found, please check the search parameters, it must be a number");

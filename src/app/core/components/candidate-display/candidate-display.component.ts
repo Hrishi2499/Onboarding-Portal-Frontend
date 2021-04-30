@@ -10,8 +10,8 @@ import { CandidateService } from '../../services/candidate.service'
 })
 export class CandidateDisplayComponent implements OnInit {
 
-  parameter: string;
-  value: string;
+  parameter: string = "";
+  value: string = "";
   candidates: Candidate[];
   constructor(private candidateService:CandidateService, private router: Router) { }
 
@@ -33,8 +33,16 @@ export class CandidateDisplayComponent implements OnInit {
   }
 
   searchByParameter(){
+    if(this.value == "" || this.parameter == ""){
+      alert("Input cannot be empty !");
+      return;
+    }
     switch (this.parameter){
-      case "candidateId": this.candidateService.getCandidateById(this.value).subscribe((data) =>{
+      case "candidateId": if(! /^\d+$/.test(this.value)){
+                            alert("Input cannot contain alphabets!");
+                            return;
+                          }
+                          this.candidateService.getCandidateById(this.value).subscribe((data) =>{
                           this.candidates = data;  
                            }, () =>{
                              alert("No records Found, please check the search parameter, it must be a number");
