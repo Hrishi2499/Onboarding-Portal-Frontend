@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit {
     );
   }
   onSubmit(){
-      //kept blank for now
+
       this.hmService.getHiringManagerByEmail(this.hmEmail).subscribe((data) =>{
         if(data == null || data.password != this.hmPassword){
           alert("Please Check EmailId/Password");

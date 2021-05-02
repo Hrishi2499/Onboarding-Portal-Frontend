@@ -8,6 +8,8 @@ import { LoginComponent } from './components/login/login.component';
 import {AuthorizationService} from './services/authorization.service'
 import { AuthGuard } from './services/auth.guard'
 import { GoogleLoginProvider, SocialAuthServiceConfig, SocialLoginModule } from 'angularx-social-login';
+import { RouterModule } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -18,7 +20,9 @@ import { GoogleLoginProvider, SocialAuthServiceConfig, SocialLoginModule } from 
     CommonModule,
     AuthRoutingModule,
     FormsModule,
-    SocialLoginModule
+    SocialLoginModule,
+    RouterModule,
+    HttpClientModule
   ],providers: [
     {
       provide: 'SocialAuthServiceConfig',
