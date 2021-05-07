@@ -96,5 +96,10 @@ Test Coverage (96.8%)
 
 ![image](https://user-images.githubusercontent.com/41691630/116663636-03a12800-a9b5-11eb-8c9e-5d581d1dbc22.png)
 
+
+
+Angular Unit testing
+![image](https://user-images.githubusercontent.com/41691630/117403245-7ebe8d00-af25-11eb-9049-34bce8c6a461.png)
+
  
 
