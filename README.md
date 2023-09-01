@@ -1,7 +1,7 @@
 # Onboarding Portal
 This is the frontend part of the MSAU onboarding portal
 
-Onboarding Application for MSAU. This is the backend part
+The backend code can be found here: https://github.com/Hrishi2499/Onboarding-Portal
 
 Login Page
 
